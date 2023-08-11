@@ -11,10 +11,9 @@ const routes: Routes = [
     component: LayoutMainComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
     ],
   },
-
 ];
 
 @NgModule({
