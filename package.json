@@ -18,6 +18,12 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@ng-bootstrap/ng-bootstrap": "^13.1.1",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.1",
+    "ngx-este": "file:../../nestjeste_ng/projects/ngx-este",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

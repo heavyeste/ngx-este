@@ -6,6 +6,8 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<div *ngIf="false">
+
 
 <style>
   :host {
@@ -327,8 +329,26 @@
 
 <div class="content" role="main">
 
+  <!-- <nge-button Label="Test"></nge-button> -->
+
+  <!-- <nge-autoformmodel [debug]="true" [showSubmit]="true" showSubmit_Label="Salva" (submitEvent)="submit()" [data]="user" ></nge-autoformmodel> -->
+
+  <div class="test_este">TEST ESTE</div>
+  <nge-autotable [data]="users" [model_type]="user" title="Utenti"
+    [debug]="true"
+    (addEvent)="addUser($event)"
+    (modifyEvent)="modifyUser($event)"
+    (removeEvent)="removeUser($event)">
+    <nge-autotable-column columnName="DateOfBirth">
+      <ng-template let-item let-dataItem="dataItem">
+        <b>{{ dataItem.DateOfBirth | date : 'dd/MM/yyyy' : '+0200'  }}</b>
+        <!-- <b>{{ item | date }}</b> -->
+      </ng-template>
+    </nge-autotable-column>
+  </nge-autotable>
+
   <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
+  <div *ngIf="false" class="card highlight-card card-small">
 
     <svg id="rocket" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
       <title>Rocket Ship</title>
@@ -480,5 +500,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+</div>
 <router-outlet></router-outlet>

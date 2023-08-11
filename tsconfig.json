@@ -16,17 +16,35 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ESNext",
     "module": "es2020",
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-este": [
+        "../../nestjeste_ng/projects/ngx-este/src/public-api"
+      ],
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+      "@ng-bootstrap/*": [
+        "./node_modules/@ng-bootstrap/*"
+      ]
+    }
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+
+    "strictNullChecks": false,
+    "fullTemplateTypeCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+
   }
 }
