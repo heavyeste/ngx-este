@@ -1,0 +1,11 @@
+@import "variables";
+
+.table > thead > tr > th {
+  // border: 1px solid !important;
+  background: $nge-color-primary;
+  color: white;
+  padding-left: 1rem;
+}
+.table > tbody > tr > td {
+  padding-left: 1rem;
+}

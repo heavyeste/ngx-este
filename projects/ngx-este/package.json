@@ -1,0 +1,25 @@
+{
+  "name": "ngx-este",
+  "version": "0.0.10",
+  "author": "Esteban Lombardo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heavyeste/ngx-este"
+  },
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/localize": "^14.3.0",
+    "@ng-bootstrap/ng-bootstrap": "^13.1.1",
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@popperjs/core": "^2.11.7",
+    "@types/lodash": "^4.14.196",
+    "bootstrap": "^5.2.3",
+    "lodash": "^4.17.21",
+    "monaco-editor": "^0.33.0",
+    "ngx-monaco-editor-v2": "^14.0.4",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.3.0"
+  }
+}

@@ -1,0 +1,75 @@
+<!-- <p>Table is just a mapping of objects to table rows with <code>ngFor</code></p> -->
+<div>
+  <h2 *ngIf="title">{{title}} <nge-button Icon="plus" Label="Aggiungi" (OnClick)="Add()"></nge-button></h2>
+
+</div>
+<!-- <table class="table table-bordered table-sm table-striped"> -->
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr >
+			<!-- <th scope="col">#</th> -->
+			<th class="" style="cursor:pointer;" *ngFor="let key of keys_raw" scope="col" (click)="OrderBy(key)">
+        <!-- <pre>{{sc[1] | json }}</pre> -->
+        {{GetLabel(key)}}
+        <i
+          class="fa-solid"
+          [ngClass]="{'fa-chevron-up': GetOrderBy(key) == 'ASC', 'fa-chevron-down': GetOrderBy(key) == 'DESC'}"
+          style="font-size: 12px;">
+        </i>
+      </th>
+      <th *ngFor="let item of columnDefinitionsExtra">
+        {{item.title}}
+      </th>
+      <th  class=""></th>
+			<!-- <th scope="col">Area</th>
+			<th scope="col">Population</th> -->
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let country of data; index as i">
+      <td *ngFor="let key of keys_raw" class="text_wrap">
+        <ng-container
+          [ngTemplateOutlet]="columnTemplates[key] || noTemplate"
+          [ngTemplateOutletContext]="{
+            $implicit: country[key],
+            dataItem:country,
+            func: onCellClick.bind(this)
+          }"
+        >
+        </ng-container>
+        <ng-template #noTemplate>
+          {{ country[key] }}
+        </ng-template>
+      </td>
+      <td *ngFor="let item of columnDefinitionsExtra">
+        <ng-container *ngIf="item.extra"
+          [ngTemplateOutlet]="columnTemplates[item.columnName]"
+          [ngTemplateOutletContext]="{
+            $implicit: country,
+            dataItem:country,
+            func: onCellClick.bind(this)
+          }"
+        >
+        </ng-container>
+      </td>
+
+			<!-- <td *ngFor="let sc of keys" class="text_wrap">
+        <ng-container
+          *ngIf="cellTemplate"
+          [ngTemplateOutlet]="cellTemplate"
+          [ngTemplateOutletContext]="{$implicit: {key: sc[1][0].key, data: country[sc[1][0].key]}}"
+        >
+        </ng-container>
+        {{ country[sc[1][0].key] }}
+			</td> -->
+      <td>
+        <nge-button style="padding-right: 0.5rem;" Icon="pen-to-square" (OnClick)="Modify(country)"></nge-button>
+        <nge-button style="padding-right: 0.5rem;" Icon="trash-can" (OnClick)="Remove(country)"></nge-button>
+      </td>
+		</tr>
+	</tbody>
+</table>
+
+<p *ngIf="debug" class="margin_container">
+  <code>{{ data | json }}</code>
+</p>

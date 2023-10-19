@@ -1,0 +1,139 @@
+<form *ngIf="login_form" [formGroup]="login_form">
+
+  <div class="row margin_container" *ngFor="let sc1 of keys">
+
+    <div class="col-12" *ngIf="getGroupLabel(sc1)">
+      <h5>{{ getGroupLabel(sc1) }}</h5>
+
+    </div>
+    <div *ngFor="let sc of sc1[1]" [class]="sc.col_class">
+      <div class="form-group" *ngIf="GetType(sc.key) =='string' || GetType(sc.key) =='number'">
+        <label [for]="sc.key">{{GetLabel(sc.key)}}</label>
+        <input
+          [id]="sc.key"
+          [name]="sc.key"
+
+          [(ngModel)]="data[sc.key]"
+          [type]="GetTypeForm(sc.key)"
+          class="form-control"
+          [ngClass]="GetValidationClass(sc)"
+          [readOnly]="GetReadOnly(sc.key)"
+          [placeholder]="GetPlaceholder(sc.key)"
+          [readonly]="readOnly"
+          [required]="GetRequired(sc.key)"
+          formControlName="{{sc.key}}"
+        />
+        <small id="{{sc.key}}_help" class="form-text text-muted">{{GetLabelHelp(sc.key)}}</small>
+
+        <div *ngIf=" false && login_form && login_form.controls && login_form.controls[sc.key] && login_form.controls[sc.key].invalid && (login_form.controls[sc.key].dirty || login_form.controls[sc.key].touched)"
+            class="alert alert-danger alert-thin">
+
+          <div *ngIf="login_form && login_form.controls && login_form.controls[sc.key] && login_form.controls[sc.key].errors['required']">
+            Campo obbligatorio
+          </div>
+          <div *ngIf="login_form && login_form.controls && login_form.controls[sc.key] && login_form.controls[sc.key].errors['minlength']">
+            Il campo deve essere lungo almeno {{login_form.controls[sc.key].errors['minlength'].requiredLength}} caratteri
+          </div>
+          <div *ngIf="login_form && login_form.controls && login_form.controls[sc.key] && login_form.controls[sc.key].errors['email']">
+            Email in formato non corretto
+          </div>
+          <!-- <div *ngIf="login_form.controls[sc.key].errors['forbiddenName']">
+            Name cannot be Bob.
+          </div> -->
+
+        </div>
+
+          <!-- aria-describedby="{{key}}" -->
+        <!-- <span *ngIf="item.type =='string'"> -->
+          <!-- <input [type]="item.type_form" class="form-control"
+          [(ngModel)]="data[item.key]"
+          aria-describedby="emailHelp" > -->
+      </div>
+      <div class="form-group" *ngIf="GetType(sc.key) =='date'">
+        <label [for]="sc.key">{{GetLabel(sc.key)}}</label>
+        <input
+          [id]="sc.key"
+          [name]="sc.key"
+          [ngModel]="data[sc.key] | date:'yyyy-MM-dd'"
+          (ngModelChange)="data[sc.key] = $event"
+          [type]="GetTypeForm(sc.key)"
+          class="form-control"
+          [readOnly]="GetReadOnly(sc.key)"
+          [placeholder]="GetPlaceholder(sc.key)"
+          [required]="GetRequired(sc.key)"
+          formControlName="{{sc.key}}"
+        />
+        <small id="{{sc.key}}_help" class="form-text text-muted">{{GetLabelHelp(sc.key)}}</small>
+      </div>
+      <div class="form-group" *ngIf="GetType(sc.key) =='textarea'">
+        <label [for]="sc.key">{{GetLabel(sc.key)}}</label>
+        <textarea class="form-control"
+          name="{{sc.key}}"
+          rows="8"
+          [(ngModel)]="data[sc.key]"
+          [disabled]="readOnly"
+          formControlName="{{sc.key}}"
+
+          >
+        </textarea>
+      </div>
+      <div class="form-check" *ngIf="GetType(sc.key) =='boolean'">
+        <input class="form-check-input" type="checkbox" value="" [readOnly]="GetReadOnly(sc.key)"
+          [(ngModel)]="data[sc.key]"
+          [readonly]="readOnly"
+
+          formControlName="{{sc.key}}"
+        />
+        <label class="form-check-label" [for]="sc.key">
+          {{GetLabel(sc.key)}}
+        </label>
+      </div>
+      <div class="form-group" *ngIf="GetType(sc.key) =='list'">
+        <label class="control-label">{{GetLabel(sc.key)}}</label>
+        <select class="form-control" [(ngModel)]="data[sc.key]"
+
+        formControlName="{{sc.key}}">
+          <option *ngFor="let item of GetSelectItems(sc.key)" value="{{item.id}}">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf="GetType(sc.key) =='xml'">
+        <label class="control-label">{{GetLabel(sc.key)}}</label>
+        <ngx-monaco-editor [options]="monacoConfig.defaultOptions" [(ngModel)]="data[sc.key]" [ngModelOptions]="{standalone: true}"></ngx-monaco-editor>
+      </div>
+    </div>
+  </div>
+
+  <p *ngIf="debug" class="margin_container">
+    <code>{{ data | json }}</code>
+  </p>
+  <div class="row margin_container">
+    <div class="col-12">
+      <button *ngIf="showSubmit && !readOnly" type="submit" class="btn btn-primary" (click)="submit()">{{showSubmit_Label}}</button>
+    </div>
+  </div>
+
+</form>
+
+<!-- <span *ngFor="let item of items" >
+    <div class="form-group" *ngIf="item.type =='string' || item.type =='date'">
+      <label [for]="item.key">{{item.GetLabel()}}</label>
+      <span *ngIf="item.type =='string'">
+        <input type="text" class="form-control"
+        [name]="item.key"
+         [(ngModel)]="data[item.key]"
+         [id]="item.key" aria-describedby="emailHelp" [placeholder]="item.GetPlaceholder()">
+      </span>
+      <span *ngIf="item.type =='date'">
+        <b>{{item.value | date }}</b>
+      </span>
+      <small id="emailHelp" class="form-text text-muted">{{item.GetLabelHelp()}}</small>
+    </div>
+    <div class="form-check" *ngIf="item.type =='boolean'">
+      <input class="form-check-input" type="checkbox" value=""
+      [id]="item.key" [name]="item.key"
+      [(ngModel)]="data[item.key]">
+      <label class="form-check-label" [for]="item.key">
+        {{item.GetLabel()}}
+      </label>
+    </div>
+  </span> -->

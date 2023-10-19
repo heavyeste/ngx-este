@@ -1,0 +1,12 @@
+<nav class="sidebar">
+  <ng-container *ngFor="let item of items">
+    <div class="nav-header">
+      <span>{{item.title}}</span>
+    </div>
+    <a *ngFor="let subitem of item.items" [routerLinkActive]="['active']" class="nav-link" [routerLink]="[subitem.link]">
+      <i [class]="subitem.icon"></i>
+      <span class="title">{{subitem.title}}</span><!---->
+    </a>
+  </ng-container>
+<!-- {{ items | json }} -->
+</nav>

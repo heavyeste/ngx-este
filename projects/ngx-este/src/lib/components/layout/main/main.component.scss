@@ -1,0 +1,28 @@
+// .sidebar {
+//   position: fixed;
+//   top: 70px;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 100;
+//   //padding: 48px 0 0;
+//   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+// }
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+
+
+
+.content {
+  width: 100%;
+  padding: 60px 20px;
+  margin-left: 200px;
+  //padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+

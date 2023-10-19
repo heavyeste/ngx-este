@@ -9,7 +9,30 @@ import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, UsersComponent],
-  imports: [BrowserModule, AppRoutingModule, NgxEsteModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgxEsteModule.forRoot({
+      sidebar: {
+        items: [
+          {
+            title: 'Dashboard',
+            items: [
+              {
+                title: 'Home',
+                link: '/',
+                icon: 'fa-solid fa-home',
+              },
+              {
+                title: 'Utenti',
+                link: '/users',
+              },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ngx-este",
+  "assets": [
+    "styles.scss",
+    { "input": "src/assets", "glob": "**/*.scss", "output": "assets" }
+
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "."
+  ]
+}

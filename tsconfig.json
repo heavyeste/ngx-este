@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -24,7 +25,7 @@
     ],
     "paths": {
       "ngx-este": [
-        "../../nestjeste_ng/projects/ngx-este/src/public-api"
+        "projects/ngx-este/src/public-api"
       ],
       "@angular/*": [
         "./node_modules/@angular/*"
