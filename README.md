@@ -1,27 +1,66 @@
-# Test01
+# NgxEste
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.12.
+Mini Framework to create a simple gui driven by model!
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- 
 
-## Code scaffolding
+## Dependencies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Latest version available for each version of Angular
 
-## Build
+| ngx-este   | Angular     |
+| ---------- | ----------- |
+| 14.x       | 14.x        |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Install
 
-## Running unit tests
+``` bash
+npm install ngx-este
+```
+Install dependencies
+- ng-bootstrap
+- reflect-metadata
+- fortawesome
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+``` bash
+npm install @ng-bootstrap/ng-bootstrap@13.1.1 bootstrap @popperjs/core reflect-metadata@0.1.13 @fortawesome/fontawesome-free@6.1.2
+```
+## Setup
 
-## Running end-to-end tests
+**Step 1**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Include SCSS in your main file
+``` scss
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**tsconfig.json**
+
+``` json
+"target": "esnext",
+...
+"angularCompilerOptions": {
+  ...
+  "strictNullChecks": false,
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true
+  ...
+}
+```
+
+## How to use
+
+** TODO
+## Components
+
+- AutoFormModel
+- AutoTable
+- Button
+
