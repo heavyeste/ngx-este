@@ -1,0 +1,16 @@
+<ng-container *ngIf="Type == 'label'" >
+  <label *ngIf="Text">{{Text}}</label>
+</ng-container>
+<ng-container *ngIf="Type == 'h1'" >
+  <h1 *ngIf="Text">{{Text}}</h1>
+</ng-container>
+<ng-container *ngIf="Type == 'h2'" >
+  <h2 *ngIf="Text">{{Text}}</h2>
+</ng-container>
+<ng-container *ngIf="Type == 'h3'" >
+  <h3 *ngIf="Text">{{Text}}</h3>
+</ng-container>
+<ng-container *ngIf="Type == 'h4'" >
+  <h4 *ngIf="Text">{{Text}}</h4>
+</ng-container>
+<hr *ngIf="WithHr" />

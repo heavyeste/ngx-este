@@ -96,7 +96,7 @@
           <option *ngFor="let item of GetSelectItems(sc.key)" value="{{item.id}}">{{item.name}}</option>
         </select>
       </div>
-      <div class="form-group" *ngIf="GetType(sc.key) =='xml'">
+      <div class="form-group" [hidden]="GetType(sc.key) != 'xml'">
         <label class="control-label">{{GetLabel(sc.key)}}</label>
         <ngx-monaco-editor [options]="monacoConfig.defaultOptions" [(ngModel)]="data[sc.key]" [ngModelOptions]="{standalone: true}"></ngx-monaco-editor>
       </div>

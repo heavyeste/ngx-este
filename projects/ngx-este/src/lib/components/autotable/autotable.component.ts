@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ContentChild, ContentChildren, Input, OnInit, Output, QueryList, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import 'reflect-metadata';
 
@@ -12,6 +12,7 @@ import * as _ from 'lodash';
 import { filter, from, map } from 'rxjs';
 import { AutoformSchema } from 'ngx-este';
 
+const FILTER_PAG_REGEX = /[^0-9]/g;
 @Component({
   selector: 'nge-autotable',
   templateUrl: './autotable.component.html',
@@ -22,9 +23,65 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
   @Input()
   title?:string;
 
+  @Input()
+  page_size:number = 10;
+
   constructor(public override formBuilder: FormBuilder, private modalService: NgbModal) {
     super(formBuilder);
   }
+
+  step: number = 1;
+  page_nr: number;
+  page: number = 1;
+
+  data_original: any[];
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.data_original = Object.assign([], this.data);
+    this.page_nr = Math.floor(this.data.length / this.page_size);
+    if((this.data.length % this.page_size) > 0) {
+      this.page_nr++;
+    }
+    this.SetPage(1);
+
+    // this.dataChange.subscribe((value: any) => {
+
+    // });
+    console.log(this.page_nr);
+    console.log(this.data.length);
+    console.log(this.data_original.length);
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if(!changes['data'].isFirstChange()) {
+      this.data_original = Object.assign([], this.data);
+      this.page_nr = Math.floor(this.data.length / this.page_size);
+      if((this.data.length % this.page_size) > 0) {
+        this.page_nr++;
+      }
+      this.SetPage(1);
+    }
+    // this.data_original = Object.assign([], this.data);
+    //   this.page_nr = Math.floor(this.data.length / this.page_size);
+    //   if((this.data.length % this.page_size) > 0) {
+    //     this.page_nr++;
+    //   }
+    //   this.SetPage(1);
+      var test = "";
+    // if (changes.myAttribute.currentValue === 'Some condition') {
+    //   // Now let's do something
+    // }
+  }
+  /**
+   * SetPage
+   */
+  public SetPage(page: any) {
+    var start = (page - 1) * this.page_size;
+    var end = this.page_size * page;
+    this.data = this.data_original.slice(start, end);
+  }
+  formatInput(input: HTMLInputElement) {
+		input.value = input.value.replace(FILTER_PAG_REGEX, '');
+	}
 
   public get columnTemplates(): { [key: string]: TemplateRef<any> } {
     if (this.columnDefinitions != null) {
@@ -140,7 +197,7 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
    */
   public Modify(item: any) {
     const modalRef = this.modalService.open(AutomodalComponent, {
-      size: 'xl',
+      size: '90',
       // fullscreen: true
     });
 
@@ -166,8 +223,10 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
    */
   public Add() {
     const modalRef = this.modalService.open(AutomodalComponent, {
-      size: 'xl',
-      // fullscreen: true
+      size: '90',
+      centered: true,
+      // windowClass: 'modal-xl',
+      //fullscreen: true
     });
 		modalRef.componentInstance.data = this.model_type;
 		modalRef.componentInstance.modal = modalRef;

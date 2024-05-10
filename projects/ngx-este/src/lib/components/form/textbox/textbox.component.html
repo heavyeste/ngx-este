@@ -1,0 +1,12 @@
+<nge-label *ngIf="Label" [Text]="Label"></nge-label>
+<div class="input-group mb-3">
+  <input
+      type="text"
+      class="form-control"
+      (keydown)="OnKeyDown($event)"
+      [(ngModel)]="Value"
+      (ngModelChange)="ExecFunction('ValueChange')"
+    />
+    <button class="btn btn-primary" type="button" id="button-addon2" (click)="DoButtonClick()">{{ButtonText}}</button>
+</div>
+

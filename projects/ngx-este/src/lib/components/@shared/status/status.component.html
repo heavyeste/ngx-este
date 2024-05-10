@@ -1,0 +1,12 @@
+<ng-container [ngSwitch]="status === 0 ? 0 : (status === 50 ? 50 : 100)">
+  <ng-container *ngSwitchCase="0">
+    <!-- <i class="fa-regular fa-circle"></i> -->
+    <nge-icon iconPrefix="fa-regular" icon="fa-circle" style="color: gray;"></nge-icon>
+  </ng-container>
+  <ng-container *ngSwitchCase="50">
+    <nge-icon iconPrefix="fa-solid" icon="fa-circle-notch" animation="spin"></nge-icon>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <nge-icon iconPrefix="fa-regular" icon="fa-circle-check" style="color: green;"></nge-icon>
+  </ng-container>
+</ng-container>

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class NgxEsteService {
   title?:string = 'NgxEste';
   sidebar?: Sidebar;
+  version?:string;
   constructor() { }
 }
 

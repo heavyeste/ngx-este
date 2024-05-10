@@ -6,24 +6,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { NgeDurationPipe, NgxEsteService } from 'ngx-este';
 import { AutoformComponent } from './components/autoform/autoform.component';
 import { AutoformNgModelComponent } from './components/autoformmodel/autoformmodel.component';
-import { AutotableComponent } from './components/autotable/autotable.component';
 import { AutomodalComponent } from './components/automodal/automodal.component';
-import { AutoHostDirective } from './directives/autohost.directive';
-import { NgeFormButtonComponent } from './components/form/button/button.component';
-import { AutoTableColumnDirective } from './components/autotable/column/autotable-column.directive';
+import { AutotableComponent } from './components/autotable/autotable.component';
 import { AutoTableColumnCellDirective } from './components/autotable/column/autotable-column-cell.directive';
-import { LayoutMainComponent } from './components/layout/main/main.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { AutoTableColumnDirective } from './components/autotable/column/autotable-column.directive';
+import { NgeFormModule } from './components/form/form.module';
 import { LayoutModule } from './components/layout/layout.module';
-import { NgxEsteService } from 'ngx-este';
+import { AutoHostDirective } from './directives/autohost.directive';
+import { NgeSharedModule } from './components/@shared/shared.module';
 
 
 
 const exportsComponents = [
-  NgxEsteComponent, AutoformComponent, AutoformNgModelComponent, AutotableComponent, AutomodalComponent, NgeFormButtonComponent
+  NgxEsteComponent, AutoformComponent, AutoformNgModelComponent, AutotableComponent, AutomodalComponent
 ]
 const exportsDirectives = [
   AutoHostDirective, AutoTableColumnDirective, AutoTableColumnCellDirective
@@ -38,9 +37,11 @@ const exportsDirectives = [
     ReactiveFormsModule,
 
     NgbModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    NgeFormModule,
+    NgeSharedModule
   ],
-  exports: [...exportsComponents,...exportsDirectives, LayoutModule],
+  exports: [...exportsComponents,...exportsDirectives, LayoutModule, NgeFormModule, NgeSharedModule],
   entryComponents: [AutomodalComponent]
 })
 export class NgxEsteModule {
@@ -48,7 +49,8 @@ export class NgxEsteModule {
     return {
       ngModule: NgxEsteModule,
       providers: [
-        {provide: NgxEsteService, useValue: config }
+        {provide: NgxEsteService, useValue: config },
+        NgeDurationPipe
       ]
     };
   }

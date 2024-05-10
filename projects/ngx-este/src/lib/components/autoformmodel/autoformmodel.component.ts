@@ -42,6 +42,8 @@ export class AutoformNgModelComponent implements OnInit {
 
   @Input()
   data:any;
+  @Output()
+  dataChange:EventEmitter<any> = new EventEmitter<any>();
 
   @Input()
   model_type:any;
@@ -116,7 +118,10 @@ export class AutoformNgModelComponent implements OnInit {
     currentSchema.forEach((x: any) => {
       validation_obj[x.key] = [{value:'' , disabled: this.readOnly}, x.validators]
     });
-    this.login_form = this.formBuilder.group(validation_obj);
+    setTimeout(() => {
+
+      this.login_form = this.formBuilder.group(validation_obj);
+    }, 100);
   }
 
   markFormTouched(group: FormGroup | FormArray) {

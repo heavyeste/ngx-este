@@ -69,6 +69,35 @@
 		</tr>
 	</tbody>
 </table>
+<div class="table_footer">
+  <ngb-pagination [collectionSize]="data_original.length" [(page)]="page" [boundaryLinks]="true" (pageChange)="SetPage(page)">
+    <ng-template ngbPaginationPages let-page let-pages="pages">
+      <!-- @if (pages.length > 0) { -->
+        <li class="ngb-custom-pages-item">
+          <div class="d-flex flex-nowrap px-2">
+            <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Page</label>
+            <input
+              #i
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              class="form-control custom-pages-input"
+              id="paginationInput"
+              [value]="page"
+
+              (keyup.enter)="SetPage(i.value)"
+              (blur)="SetPage(i.value)"
+              (input)="formatInput($any($event).target)"
+              aria-labelledby="paginationInputLabel paginationDescription"
+              style="width: 2.5rem"
+            />
+            <span id="paginationDescription" class="col-form-label text-nowrap px-2"> of {{ pages.length }}</span>
+          </div>
+        </li>
+      <!-- } -->
+    </ng-template>
+  </ngb-pagination>
+</div>
 
 <p *ngIf="debug" class="margin_container">
   <code>{{ data | json }}</code>

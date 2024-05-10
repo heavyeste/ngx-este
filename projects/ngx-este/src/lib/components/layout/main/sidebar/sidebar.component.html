@@ -8,5 +8,7 @@
       <span class="title">{{subitem.title}}</span><!---->
     </a>
   </ng-container>
-<!-- {{ items | json }} -->
+  <div class="nav-footer" *ngIf="version">
+    {{version}}
+  </div>
 </nav>

@@ -1,0 +1,16 @@
+<nge-label *ngIf="LabelText" [Text]="LabelText"></nge-label>
+<div class="input-group mb-3">
+  <input
+      id="typeahead-focus"
+      type="text"
+      class="form-control"
+      [(ngModel)]="Value"
+      (ngModelChange)="ExecFunction('ValueChange')"
+      [ngbTypeahead]="search"
+      (focus)="focus$.next($any($event).target.value)"
+      (click)="click$.next($any($event).target.value)"
+      #instance="ngbTypeahead"
+    />
+    <button *ngIf="ButtonText" class="btn btn-primary" type="button" id="button-addon2" (click)="DoButtonClick()">{{ButtonText}}</button>
+</div>
+

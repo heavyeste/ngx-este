@@ -1,5 +1,7 @@
 @import "variables";
-
+.table {
+  font-size: 14px;
+}
 .table > thead > tr > th {
   // border: 1px solid !important;
   background: $nge-color-primary;
