@@ -1,1 +1,16 @@
-<p>users works!</p>
+<nge-autotable
+  [data]="users"
+  [model_type]="user"
+  title="Utenti"
+  [debug]="true"
+  (addEvent)="addUser($event)"
+  (modifyEvent)="modifyUser($event)"
+  (removeEvent)="removeUser($event)"
+>
+  <nge-autotable-column columnName="DateOfBirth">
+    <ng-template let-item let-dataItem="dataItem">
+      <b>{{ dataItem.DateOfBirth | date: "dd/MM/yyyy" : "+0200" }}</b>
+      <!-- <b>{{ item | date }}</b> -->
+    </ng-template>
+  </nge-autotable-column>
+</nge-autotable>

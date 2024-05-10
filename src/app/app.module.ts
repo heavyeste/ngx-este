@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { NgxEsteModule } from 'ngx-este';
 import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './pages/users/users.component';
+import { PostsComponent } from './pages/posts/posts.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UsersComponent],
+  declarations: [AppComponent, HomeComponent, UsersComponent, PostsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgxEsteModule.forRoot({
       sidebar: {
         items: [
@@ -24,9 +27,14 @@ import { UsersComponent } from './pages/users/users.component';
                 icon: 'fa-solid fa-home',
               },
               {
-                title: 'Utenti',
-                link: '/users',
+                title: 'Posts',
+                link: '/posts',
               },
+              // {
+              //   title: 'Utenti',
+              //   link: '/users',
+              // },
+
             ],
           },
         ],

@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LayoutModule } from 'ngx-este';
 import { LayoutMainComponent } from 'ngx-este';
 import { UsersComponent } from './pages/users/users.component';
+import { PostsComponent } from './pages/posts/posts.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'posts', component: PostsComponent },
     ],
   },
 ];
