@@ -67,10 +67,19 @@ export class AutoformSchema {
   public group_label?: string;
   public col_class?: string = 'col-12';
 
+  public style?: AutoformSchema_Style | null = null;
+
   public constructor(init?:Partial<AutoformSchema>) {
     Object.assign(this, init);
   }
 
   public order_by?:string = '';
   public search_string?:string = '';
+}
+
+export class AutoformSchema_Style {
+  public height?: number | null = null;
+  public height_um?: 'px' | '%' | 'vh' = 'px';
+  public width?: number | null = null;
+  public width_um?: 'px' | '%' | 'vh' = 'px';
 }

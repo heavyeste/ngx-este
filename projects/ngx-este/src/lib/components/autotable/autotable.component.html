@@ -8,12 +8,18 @@
 	<thead>
 		<tr >
 			<!-- <th scope="col">#</th> -->
-			<th class="" style="cursor:pointer;" *ngFor="let key of keys_raw" scope="col" (click)="OrderBy(key)">
+			<th class="" style="cursor:pointer;" *ngFor="let key of keys_raw" scope="col" (click)="OrderBy(key)" [ngStyle]="{header_th_style: header_th_style != null}">
         <!-- <pre>{{sc[1] | json }}</pre> -->
-        {{GetLabel(key)}}
+         <ng-container *ngIf="columnTitles[key] else label">
+          {{columnTitles[key]}}
+         </ng-container>
+         <ng-template #label>
+           {{GetLabel(key)}}
+
+         </ng-template>
         <i
           class="fa-solid"
-          [ngClass]="{'fa-chevron-up': GetOrderBy(key) == 'ASC', 'fa-chevron-down': GetOrderBy(key) == 'DESC'}"
+          [ngClass]="{'fa-chevron-down': GetOrderBy(key) == 'ASC', 'fa-chevron-up': GetOrderBy(key) == 'DESC'}"
           style="font-size: 12px;">
         </i>
       </th>
@@ -27,7 +33,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let country of data; index as i">
-      <td *ngFor="let key of keys_raw" class="text_wrap">
+      <td *ngFor="let key of keys_raw" class="text_wrap" [ngStyle]="{body_td_style: body_td_style != null}" >
         <ng-container
           [ngTemplateOutlet]="columnTemplates[key] || noTemplate"
           [ngTemplateOutletContext]="{

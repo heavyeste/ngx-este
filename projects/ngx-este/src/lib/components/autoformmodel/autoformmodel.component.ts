@@ -203,6 +203,22 @@ export class AutoformNgModelComponent implements OnInit {
   }
 
   /**
+   * GetStyle
+   */
+  public GetStyle(key:string) {
+    var schema = this.GetSchema(key);
+
+    if(schema && schema.style) {
+      var res_list: string[] = [];
+      if(schema.style.height) {
+        res_list.push(`height: ${schema.style.height}${schema.style.height_um}`)
+      }
+      return res_list.join(';');
+    }
+    return '';
+  }
+
+  /**
    * GetValidationClass
    */
   public GetValidationClass(sc: any) : string {

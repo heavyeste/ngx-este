@@ -26,8 +26,27 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
   @Input()
   page_size:number = 10;
 
+  @Input()
+  header_th_style:any = null;
+  @Input()
+  body_td_style:any = null;
+
+  @Input()
+  column_width?: string | number = undefined;
+
   constructor(public override formBuilder: FormBuilder, private modalService: NgbModal) {
     super(formBuilder);
+    if(this.column_width) {
+      if(!this.header_th_style) {
+        this.header_th_style = {};
+      }
+      this.header_th_style.width = this.column_width;
+      if(!this.body_td_style) {
+        this.body_td_style = {};
+      }
+      this.body_td_style.width = this.column_width;
+
+    }
   }
 
   step: number = 1;
@@ -38,8 +57,8 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
   override ngOnInit(): void {
     super.ngOnInit();
     this.data_original = Object.assign([], this.data);
-    this.page_nr = Math.floor(this.data.length / this.page_size);
-    if((this.data.length % this.page_size) > 0) {
+    this.page_nr = Math.floor(this.data_original.length / this.page_size);
+    if((this.data_original.length % this.page_size) > 0) {
       this.page_nr++;
     }
     this.SetPage(1);
@@ -47,9 +66,9 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
     // this.dataChange.subscribe((value: any) => {
 
     // });
-    console.log(this.page_nr);
-    console.log(this.data.length);
-    console.log(this.data_original.length);
+    // console.log(this.page_nr);
+    // console.log(this.data.length);
+    // console.log(this.data_original.length);
   }
   ngOnChanges(changes: SimpleChanges) {
     if(!changes['data'].isFirstChange()) {
@@ -89,6 +108,18 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
       for (const columnDefinition of this.columnDefinitions.toArray()) {
         columnTemplates[columnDefinition.columnName] =
           columnDefinition.columnTemplate;
+      }
+      return columnTemplates;
+    } else {
+      return {};
+    }
+  }
+  public get columnTitles(): { [key: string]: string } {
+    if (this.columnDefinitions != null) {
+      const columnTemplates: { [key: string]: string } = {};
+      for (const columnDefinition of this.columnDefinitions.toArray()) {
+        columnTemplates[columnDefinition.columnName] =
+          columnDefinition.title;
       }
       return columnTemplates;
     } else {
@@ -184,12 +215,13 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
    */
   public OrderBy(key: string) {
     var order_by = this.SetOrderBy(key);
-    this.data.sort((a:any, b:any) => {
+    this.data_original.sort((a:any, b:any) => {
       if (order_by === 'ASC')
         return a[key] < b[key] ? -1 : 1;
       else
         return a[key] > b[key] ? -1 : 1;
      });
+     this.SetPage(this.page);
   }
 
   /**
@@ -209,11 +241,12 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
       return (modalRef.componentInstance.componentRef.instance as AutoformNgModelComponent).CheckData();
     } ;
     modalRef.result.then((data:any) => {
-      //(modalRef.componentInstance.componentRef.instance as AutoformNgModelComponent).submitEvent = this.submitEvent;
-      var currentModel = (modalRef.componentInstance.componentRef.instance as AutoformNgModelComponent);
-      if(currentModel.CheckData())
-        this.modifyEvent.emit(currentModel.data);
-
+      if(data == 'Confirm') {
+        //(modalRef.componentInstance.componentRef.instance as AutoformNgModelComponent).submitEvent = this.submitEvent;
+        var currentModel = (modalRef.componentInstance.componentRef.instance as AutoformNgModelComponent);
+        if(currentModel.CheckData())
+          this.modifyEvent.emit(currentModel.data);
+      }
       // console.log(data);
     });
     //(modalRef.componentInstance as AutomodalComponent).Confirm. = modalRef.componentInstance.component.submitEvent;
