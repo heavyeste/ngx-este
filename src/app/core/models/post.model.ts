@@ -7,7 +7,7 @@ export class Post {
 
   @AutoformP({
     label: 'Titolo',
-    required: true,
+    //required: true,
     placeholder: '...',
     group: 'info',
     group_label: 'Informazioni personali',
