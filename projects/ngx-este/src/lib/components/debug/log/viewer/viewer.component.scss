@@ -1,0 +1,27 @@
+.container {
+  background-color: #242424;
+  font-family: monospace;
+}
+ul {
+  padding-left: 0;
+}
+li {
+  list-style-type: none;
+  .timestamp {
+    color: #187100;
+  }
+  .level {
+    &.INFO {
+      color: #00758c;
+    }
+    &.WARN {
+      color: #8c8700;
+    }
+    &.ERROR {
+      color: #ff7272;
+    }
+  }
+  .message {
+    color: #c9c9c9;
+  }
+}

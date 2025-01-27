@@ -18,11 +18,14 @@ import { NgeFormModule } from './components/form/form.module';
 import { LayoutModule } from './components/layout/layout.module';
 import { AutoHostDirective } from './directives/autohost.directive';
 import { NgeSharedModule } from './components/@shared/shared.module';
+import { NgeDebugModule } from './components/debug/debug.module';
+import { NgeDebugLogViewerComponent } from './components/debug/log/viewer/viewer.component';
 
 
 
 const exportsComponents = [
-  NgxEsteComponent, AutoformComponent, AutoformNgModelComponent, AutotableComponent, AutomodalComponent
+  NgxEsteComponent, AutoformComponent, AutoformNgModelComponent, AutotableComponent, AutomodalComponent,
+
 ]
 const exportsDirectives = [
   AutoHostDirective, AutoTableColumnDirective, AutoTableColumnCellDirective
@@ -39,9 +42,10 @@ const exportsDirectives = [
     NgbModule,
     MonacoEditorModule.forRoot(),
     NgeFormModule,
-    NgeSharedModule
+    NgeSharedModule,
+    NgeDebugModule
   ],
-  exports: [...exportsComponents,...exportsDirectives, LayoutModule, NgeFormModule, NgeSharedModule],
+  exports: [...exportsComponents,...exportsDirectives, LayoutModule, NgeFormModule, NgeSharedModule, NgeDebugModule],
   entryComponents: [AutomodalComponent]
 })
 export class NgxEsteModule {

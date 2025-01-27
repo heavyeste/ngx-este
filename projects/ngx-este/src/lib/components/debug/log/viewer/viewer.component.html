@@ -1,0 +1,11 @@
+<div class="container">
+  <ul>
+    <li *ngFor="let log of data" class="no-bullet">
+      <span class="timestamp"
+        >{{ log.TimeStamp | date: "yyyy-MM-dd HH:mm:ss.SSS" }}
+      </span>
+      <span class="level" [ngClass]="log.Level">{{ log.Level }} </span>
+      <span class="message">{{ log.Message }}</span>
+    </li>
+  </ul>
+</div>

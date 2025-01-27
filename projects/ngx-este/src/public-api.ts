@@ -36,6 +36,9 @@ export * from './lib/services/base.service';
 export * from './lib/services/app-config.service';
 export * from './lib/services/local-storage.service';
 
+//DEBUG
+export * from './lib/components/debug/log/viewer/viewer.component';
+
 
 
 
