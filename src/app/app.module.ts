@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './pages/users/users.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TestModule } from './pages/test/test.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, UsersComponent, PostsComponent],
@@ -30,15 +31,26 @@ import { HttpClientModule } from '@angular/common/http';
                 title: 'Posts',
                 link: '/posts',
               },
-              // {
-              //   title: 'Utenti',
-              //   link: '/users',
-              // },
+              {
+                title: 'Utenti',
+                link: '/users',
+              },
+            ],
+          },
+          {
+            title: 'Test',
+            items: [
+              {
+                title: 'Test01',
+                link: '/test/test01',
+                icon: 'fa-solid fa-home',
+              },
             ],
           },
         ],
       },
     }),
+    TestModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
