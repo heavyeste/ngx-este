@@ -233,7 +233,7 @@ export class AutotableComponent extends AutoformNgModelComponent implements OnIn
       // fullscreen: true
     });
 
-		modalRef.componentInstance.data = _.cloneDeep(item);
+		modalRef.componentInstance.data = item; //_.cloneDeep(item);
 		modalRef.componentInstance.modal = modalRef;
 		modalRef.componentInstance.title = "Modifica";
 		modalRef.componentInstance.component = AutoformNgModelComponent;

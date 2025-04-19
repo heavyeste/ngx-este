@@ -26,7 +26,7 @@
       <th *ngFor="let item of columnDefinitionsExtra">
         {{item.title}}
       </th>
-      <th  class=""></th>
+      <th  class="actions"></th>
 			<!-- <th scope="col">Area</th>
 			<th scope="col">Population</th> -->
 		</tr>
@@ -69,8 +69,10 @@
         {{ country[sc[1][0].key] }}
 			</td> -->
       <td>
-        <nge-button style="padding-right: 0.5rem;" Icon="pen-to-square" (OnClick)="Modify(country)"></nge-button>
-        <nge-button style="padding-right: 0.5rem;" Icon="trash-can" (OnClick)="Remove(country)"></nge-button>
+        <div class="actions">
+          <nge-button Icon="pen-to-square" (OnClick)="Modify(country)"></nge-button>
+          <nge-button Icon="trash-can" (OnClick)="Remove(country)"></nge-button>
+        </div>
       </td>
 		</tr>
 	</tbody>
@@ -107,4 +109,5 @@
 
 <p *ngIf="debug" class="margin_container">
   <code>{{ data | json }}</code>
+  <code>{{ data_original | json }}</code>
 </p>

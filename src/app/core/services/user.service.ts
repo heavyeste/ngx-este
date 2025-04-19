@@ -4,7 +4,7 @@ import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root',
 })
-export class TestService {
+export class UserService {
   /**
    * GetUsers
    */
